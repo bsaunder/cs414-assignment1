@@ -143,5 +143,23 @@ public class WorldTest {
         // then
         assertEquals("World(3,3)", world.toString());
     }
+    
+    /**
+     * Tests the Worlds get Method.
+     */
+    @Test
+    public final void testGet(){
+    	// give it a method get(Coordinate c) which returns the object at c, implemented in terms of the get() method in the Coordinate class.
+    	fail("Not yet implemented.");
+    }
+    
+    /**
+     * Tests the Worlds put Method.
+     */
+    @Test
+    public final void testPut(){
+    	// give it a method put(Coordinate c, Object o) which puts the object o at the x,y position indicated by Coordinate c.
+    	fail("Not yet implemented.");
+    }
 
 }
