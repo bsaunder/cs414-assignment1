@@ -304,7 +304,19 @@ public class CoordinateTest {
      */
     @Test
     public void ifNorthernCoordinateCorrectThenPass() {
-        fail("Not yet implemented.");
+    	// given
+        Integer x = 2;
+        Integer y = 2;
+        Integer size = 3;
+        World world = new World(size);
+        
+        // when
+        Coordinate coord = new Coordinate(x, y, world);
+        Coordinate northernCoord = coord.north();
+        
+        // then
+        assertEquals(x, northernCoord.getX());
+        assertEquals(new Integer(0), northernCoord.getY());
     }
 
     /**
@@ -312,7 +324,19 @@ public class CoordinateTest {
      */
     @Test
     public void ifSouthernCoordinateCorrectThenPass() {
-        fail("Not yet implemented.");
+    	// given
+        Integer x = 2;
+        Integer y = 2;
+        Integer size = 3;
+        World world = new World(size);
+        
+        // when
+        Coordinate coord = new Coordinate(x, y, world);
+        Coordinate southernCoord = coord.south();
+        
+        // then
+        assertEquals(x, southernCoord.getX());
+        assertEquals(new Integer(1), southernCoord.getY());
     }
 
     /**
@@ -320,7 +344,19 @@ public class CoordinateTest {
      */
     @Test
     public void ifEasternCoordinateCorrectThenPass() {
-        fail("Not yet implemented.");
+    	// given
+        Integer x = 2;
+        Integer y = 2;
+        Integer size = 3;
+        World world = new World(size);
+        
+        // when
+        Coordinate coord = new Coordinate(x, y, world);
+        Coordinate easternCoord = coord.east();
+        
+        // then
+        assertEquals(new Integer(0), easternCoord.getX());
+        assertEquals(y, easternCoord.getY());
     }
 
     /**
@@ -328,7 +364,19 @@ public class CoordinateTest {
      */
     @Test
     public void ifWesternCoordinateCorrectThenPass() {
-        fail("Not yet implemented.");
+    	// given
+        Integer x = 2;
+        Integer y = 2;
+        Integer size = 3;
+        World world = new World(size);
+        
+        // when
+        Coordinate coord = new Coordinate(x, y, world);
+        Coordinate westernCoord = coord.west();
+        
+        // then
+        assertEquals(new Integer(1), westernCoord.getX());
+        assertEquals(y, westernCoord.getY());
     }
 
 }
