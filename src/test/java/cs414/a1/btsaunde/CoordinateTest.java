@@ -26,13 +26,13 @@ public class CoordinateTest {
     @Test
     public final void ifObjectCreatedThenPass() {
         // given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        World world = new World(size);
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final World world = new World(size);
 
         // when
-        Coordinate coord = new Coordinate(x, y, world);
+        final Coordinate coord = new Coordinate(x, y, world);
 
         // then
         assertNotNull(coord);
@@ -47,8 +47,8 @@ public class CoordinateTest {
     @Test
     public final void ifCoordinatesWrappedNorthThenPass() {
         // given
-        Integer x = 2;
-        World world = new World(3);
+        final Integer x = 2;
+        final World world = new World(3);
 
         // when/then
         Coordinate coord = new Coordinate(x, 3, world);
@@ -70,8 +70,8 @@ public class CoordinateTest {
     @Test
     public final void ifCoordinatesWrappedSouthThenPass() {
         // given
-        Integer x = 2;
-        World world = new World(3);
+        final Integer x = 2;
+        final World world = new World(3);
 
         // when/then
         Coordinate coord = new Coordinate(x, -1, world);
@@ -93,8 +93,8 @@ public class CoordinateTest {
     @Test
     public final void ifCoordinatesWrappedEastThenPass() {
         // given
-        Integer y = 2;
-        World world = new World(3);
+        final Integer y = 2;
+        final World world = new World(3);
 
         // when/then
         Coordinate coord = new Coordinate(3, y, world);
@@ -116,8 +116,8 @@ public class CoordinateTest {
     @Test
     public final void ifCoordinatesWrappedWestThenPass() {
         // given
-        Integer y = 2;
-        World world = new World(3);
+        final Integer y = 2;
+        final World world = new World(3);
 
         // when/then
         Coordinate coord = new Coordinate(-1, y, world);
@@ -139,16 +139,16 @@ public class CoordinateTest {
     @Test
     public final void ifObjectExistsThenGetObject() {
         // given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        World world = new World(size);
-        String strObject = new String("String");
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final World world = new World(size);
+        final String strObject = new String("String");
         world.put(x, y, strObject);
 
         // when
-        Coordinate coord = new Coordinate(x, y, world);
-        Object object = coord.get();
+        final Coordinate coord = new Coordinate(x, y, world);
+        final Object object = coord.get();
 
         // then
         assertNotNull(object);
@@ -161,14 +161,14 @@ public class CoordinateTest {
     @Test
     public final void ifObjectDoesntExistThenGetNull() {
         // given
-        Integer x = 2;
-        Integer y = 1;
-        Integer size = 3;
-        World world = new World(size);
+        final Integer x = 2;
+        final Integer y = 1;
+        final Integer size = 3;
+        final World world = new World(size);
 
         // when
-        Coordinate coord = new Coordinate(x, y, world);
-        Object object = coord.get();
+        final Coordinate coord = new Coordinate(x, y, world);
+        final Object object = coord.get();
 
         // then
         assertNull(object);
@@ -180,18 +180,18 @@ public class CoordinateTest {
     @Test
     public final void ifObjectInsertedThenPass() {
         // given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        World world = new World(size);
-        String strObject = new String("String");
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final World world = new World(size);
+        final String strObject = new String("String");
 
         // when
-        Coordinate coord = new Coordinate(x, y, world);
+        final Coordinate coord = new Coordinate(x, y, world);
         coord.put(strObject);
 
         // then
-        Object object = world.get(x, y);
+        final Object object = world.get(x, y);
         assertNotNull(object);
         assertEquals(strObject, object);
     }
@@ -202,14 +202,14 @@ public class CoordinateTest {
     @Test
     public final void ifCoordinatesAndWorldSameThenEqual() {
         // given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        World world = new World(size);
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final World world = new World(size);
 
         // when
-        Coordinate coord1 = new Coordinate(x, y, world);
-        Coordinate coord2 = new Coordinate(x, y, world);
+        final Coordinate coord1 = new Coordinate(x, y, world);
+        final Coordinate coord2 = new Coordinate(x, y, world);
 
         // then
         assertEquals(coord1, coord2);
@@ -223,17 +223,17 @@ public class CoordinateTest {
     @Test
     public final void ifSameWorldDifferentCoordsThenNotEqual() {
         // given
-        Integer x1 = 2;
-        Integer y1 = 2;
-        Integer x2 = 1;
-        Integer y2 = 1;
+        final Integer x1 = 2;
+        final Integer y1 = 2;
+        final Integer x2 = 1;
+        final Integer y2 = 1;
 
-        Integer size = 3;
-        World world = new World(size);
+        final Integer size = 3;
+        final World world = new World(size);
 
         // when
-        Coordinate coord1 = new Coordinate(x1, y1, world);
-        Coordinate coord2 = new Coordinate(x2, y2, world);
+        final Coordinate coord1 = new Coordinate(x1, y1, world);
+        final Coordinate coord2 = new Coordinate(x2, y2, world);
 
         // then
         assertFalse(coord1.equals(coord2));
@@ -246,16 +246,16 @@ public class CoordinateTest {
     @Test
     public final void ifSameCoordsDifferentWorldThenNotEqual() {
         // given
-        Integer x = 2;
-        Integer y = 2;
+        final Integer x = 2;
+        final Integer y = 2;
 
-        Integer size = 3;
-        World world1 = new World(size);
-        World world2 = new World(size);
+        final Integer size = 3;
+        final World world1 = new World(size);
+        final World world2 = new World(size);
 
         // when
-        Coordinate coord1 = new Coordinate(x, y, world1);
-        Coordinate coord2 = new Coordinate(x, y, world2);
+        final Coordinate coord1 = new Coordinate(x, y, world1);
+        final Coordinate coord2 = new Coordinate(x, y, world2);
 
         // then
         assertFalse(coord1.equals(coord2));
@@ -267,15 +267,15 @@ public class CoordinateTest {
      */
     public final void ifHashCodeCorrectThenPass() {
         // given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        World world = new World(size);
-        Integer expectedHash = x + y + world.hashCode();
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final World world = new World(size);
+        final Integer expectedHash = x + y + world.hashCode();
 
         // when
-        Coordinate coord = new Coordinate(x, y, world);
-        Integer hashCode = coord.hashCode();
+        final Coordinate coord = new Coordinate(x, y, world);
+        final Integer hashCode = coord.hashCode();
 
         // then
         assertEquals(expectedHash, hashCode);
@@ -287,13 +287,13 @@ public class CoordinateTest {
     @Test
     public final void ifCorrectStringGeneratedThenPass() {
         // given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
 
         // when
-        World world = new World(size);
-        Coordinate coord = new Coordinate(x, y, world);
+        final World world = new World(size);
+        final Coordinate coord = new Coordinate(x, y, world);
 
         // then
         assertEquals("Coordinate(2,2) in World(3,3)", coord.toString());
@@ -305,14 +305,14 @@ public class CoordinateTest {
     @Test
     public void ifNorthernCoordinateCorrectThenPass() {
     	// given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        World world = new World(size);
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final World world = new World(size);
         
         // when
-        Coordinate coord = new Coordinate(x, y, world);
-        Coordinate northernCoord = coord.north();
+        final Coordinate coord = new Coordinate(x, y, world);
+        final Coordinate northernCoord = coord.north();
         
         // then
         assertEquals(x, northernCoord.getX());
@@ -325,14 +325,14 @@ public class CoordinateTest {
     @Test
     public void ifSouthernCoordinateCorrectThenPass() {
     	// given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        World world = new World(size);
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final World world = new World(size);
         
         // when
-        Coordinate coord = new Coordinate(x, y, world);
-        Coordinate southernCoord = coord.south();
+        final Coordinate coord = new Coordinate(x, y, world);
+        final Coordinate southernCoord = coord.south();
         
         // then
         assertEquals(x, southernCoord.getX());
@@ -345,14 +345,14 @@ public class CoordinateTest {
     @Test
     public void ifEasternCoordinateCorrectThenPass() {
     	// given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        World world = new World(size);
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final World world = new World(size);
         
         // when
-        Coordinate coord = new Coordinate(x, y, world);
-        Coordinate easternCoord = coord.east();
+        final Coordinate coord = new Coordinate(x, y, world);
+        final Coordinate easternCoord = coord.east();
         
         // then
         assertEquals(new Integer(0), easternCoord.getX());
@@ -365,14 +365,14 @@ public class CoordinateTest {
     @Test
     public void ifWesternCoordinateCorrectThenPass() {
     	// given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        World world = new World(size);
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final World world = new World(size);
         
         // when
-        Coordinate coord = new Coordinate(x, y, world);
-        Coordinate westernCoord = coord.west();
+        final Coordinate coord = new Coordinate(x, y, world);
+        final Coordinate westernCoord = coord.west();
         
         // then
         assertEquals(new Integer(1), westernCoord.getX());

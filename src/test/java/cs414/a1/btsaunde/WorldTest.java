@@ -24,11 +24,11 @@ public class WorldTest {
     @Test
     public final void if2by3ObjectCreatedThenPass() {
         // given
-        Integer width = 2;
-        Integer height = 3;
+        final Integer width = 2;
+        final Integer height = 3;
 
         // when
-        World world = new World(width, height);
+        final World world = new World(width, height);
 
         // then
         assertNotNull(world);
@@ -42,10 +42,10 @@ public class WorldTest {
     @Test
     public final void if2by2ObjectCreatedThenPass() {
         // given
-        Integer size = 2;
+        final Integer size = 2;
 
         // when
-        World world = new World(size);
+        final World world = new World(size);
 
         // then
         assertNotNull(world);
@@ -59,13 +59,13 @@ public class WorldTest {
     @Test
     public final void ifValidCoordinateThenGetObject() {
         // given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
 
         // when
-        World world = new World(size);
-        Object object = world.get(x, y);
+        final World world = new World(size);
+        final Object object = world.get(x, y);
 
         // then
         assertNull(object); // Should be null b/c the grid is empty
@@ -77,13 +77,13 @@ public class WorldTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public final void ifInvalidCoordinateThenGetThrowsIndexOutOfBoundsException() {
         // given
-        Integer x = 2;
-        Integer y = 3;
-        Integer size = 3;
+        final Integer x = 2;
+        final Integer y = 3;
+        final Integer size = 3;
 
         // when
-        World world = new World(size);
-        Object object = world.get(x, y);
+        final World world = new World(size);
+        final Object object = world.get(x, y);
 
         // then
         fail("Expecting IndexOutOfBoundsException");
@@ -95,15 +95,15 @@ public class WorldTest {
     @Test
     public final void ifValidCoordinateThenPutObject() {
         // given
-        Integer x = 2;
-        Integer y = 2;
-        Integer size = 3;
-        String strObject = new String("Hello!");
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final String strObject = new String("Hello!");
 
         // when
-        World world = new World(size);
+        final World world = new World(size);
         world.put(x, y, strObject);
-        Object object = world.get(x, y);
+        final Object object = world.get(x, y);
 
         // then
         assertNotNull(object);
@@ -116,13 +116,13 @@ public class WorldTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public final void ifInvalidCoordinateThenPutThrowsIndexOutOfBoundsException() {
         // given
-        Integer x = 2;
-        Integer y = 3;
-        Integer size = 3;
-        String strObject = new String("World!");
+        final Integer x = 2;
+        final Integer y = 3;
+        final Integer size = 3;
+        final String strObject = new String("World!");
 
         // when
-        World world = new World(size);
+        final World world = new World(size);
         world.put(x, y, strObject);
 
         // then
@@ -135,31 +135,92 @@ public class WorldTest {
     @Test
     public final void ifCorrectStringGeneratedThenPass() {
         // given
-        Integer size = 3;
+        final Integer size = 3;
 
         // when
-        World world = new World(size);
+        final World world = new World(size);
 
         // then
         assertEquals("World(3,3)", world.toString());
     }
-    
+
     /**
      * Tests the Worlds get Method.
      */
     @Test
-    public final void testGet(){
-    	// give it a method get(Coordinate c) which returns the object at c, implemented in terms of the get() method in the Coordinate class.
-    	fail("Not yet implemented.");
+    public final void ifObjectRetrievedFromCoordinateThenPass() {
+        // given
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final String strObject = new String("String!");
+
+        final World world = new World(size);
+        final Coordinate coord = new Coordinate(x, y, world);
+        world.put(coord, strObject);
+
+        // when
+        final Object object = world.get(coord);
+
+        // then
+        assertNotNull(object);
+        assertEquals(strObject, object);
     }
-    
+
+    /**
+     * Tests that World.get(Coordinate) is getting the Object from World on the
+     * Coordinate, NOT the World that get() was called on.
+     */
+    @Test
+    public final void ifObjectRetrievedFromCorrectWorldThenPass() {
+        // given
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+
+        final String earthObject = new String("Earth!");
+        final String plutoObject = new String("Pluto!");
+
+        final World earth = new World(size);
+        final World pluto = new World(size);
+
+        final Coordinate earthCoordinate = new Coordinate(x, y, earth);
+        final Coordinate plutoCoordinate = new Coordinate(x, y, pluto);
+
+        earth.put(earthCoordinate, earthObject);
+        pluto.put(plutoCoordinate, plutoObject);
+
+        // when
+        final Object retrievedEarthObject = earth.get(plutoCoordinate);
+        final Object retrievedPlutoObject = pluto.get(earthCoordinate);
+
+        // then
+        assertNotNull(retrievedEarthObject);
+        assertNotNull(retrievedPlutoObject);
+        assertEquals(plutoObject, retrievedEarthObject);
+        assertEquals(retrievedPlutoObject, earthObject);
+    }
+
     /**
      * Tests the Worlds put Method.
      */
     @Test
-    public final void testPut(){
-    	// give it a method put(Coordinate c, Object o) which puts the object o at the x,y position indicated by Coordinate c.
-    	fail("Not yet implemented.");
+    public final void ifObjectPutAtCoordinateThenPass() {
+        // given
+        final Integer x = 2;
+        final Integer y = 2;
+        final Integer size = 3;
+        final String strObject = new String("String!");
+        final World world = new World(size);
+
+        // when
+        final Coordinate coord = new Coordinate(x, y, world);
+        world.put(coord, strObject);
+
+        // then
+        final Object object = world.get(x, y);
+        assertNotNull(object);
+        assertEquals(strObject, object);
     }
 
 }

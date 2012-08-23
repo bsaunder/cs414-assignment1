@@ -110,7 +110,7 @@ public class World extends ArrayList<Object> {
      * @return Index of the position
      */
     private Integer getIndex(final Integer xCoord, final Integer yCoord) {
-        Integer rowWidth = this.getWidth();
+        final Integer rowWidth = this.getWidth();
         final Integer index = (yCoord * rowWidth) + xCoord;
         return index;
     }
@@ -127,7 +127,7 @@ public class World extends ArrayList<Object> {
      */
     protected final void put(final Integer xCoord, final Integer yCoord,
             final Object dataObject) {
-        Integer index = this.getIndex(xCoord, yCoord);
+        final Integer index = this.getIndex(xCoord, yCoord);
         this.add(index, dataObject);
     }
 
@@ -139,6 +139,34 @@ public class World extends ArrayList<Object> {
         final Integer width = this.getWidth();
         final Integer height = this.getHeight();
         return "World(" + width + "," + height + ")";
+    }
+
+    /**
+     * Places the Object in the World at the X,Y Coordinates represented by the
+     * Coordinate.
+     * 
+     * @param coord
+     *            Coordinate to place the object at
+     * @param dataObject
+     *            Object to place
+     */
+    public final void put(final Coordinate coord, final Object dataObject) {
+        final Integer x = coord.getX();
+        final Integer y = coord.getY();
+        final Integer index = this.getIndex(x, y);
+        this.add(index, dataObject);
+    }
+
+    /**
+     * Gets the Object that the given Coordinate points to on the world the
+     * Coordinate references, NOT the world the method was called on. Returns
+     * Null if no object exists.
+     * 
+     * @param coordinate Coordinate to get object from
+     * @return Retrieved Object, or null if no object exists
+     */
+    public final Object get(final Coordinate coordinate) {
+        return coordinate.get();
     }
 
 }
