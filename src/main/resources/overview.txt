@@ -1,0 +1,34 @@
+CS 414 Object Oriented Design, Fall 2012
+Design Assignment A1
+http://www.cs.colostate.edu/~ghosh/courses/cs414-f12/yr2012fa/more_assignments/A01.php
+
+Submitted By: Bryan Saunders, btsaunde@gmail.com
+
+-----------------------
+Assignment
+-----------------------
+Certain games use a rectangular grid for the world, and allow the world to "wrap" from 
+top to bottom and from left to right. Conceptually, this makes a doughnut-shaped world:
+if you keep going "North" you eventually wrap back around to where you were, and if you
+keep going "East" you similarly wrap back around. Implement class World, which represents
+an n*m grid of Objects, where the coordinates wrap as described above. Note that these 
+Objects refer to instances of the class java.lang.Object. Implement class Coordinate,
+which represents an x,y position in a particular 2D world (where x and y are ints). 
+The x,y in a Coordinate must always be valid, i.e. in the 0..n-1, 0..m-1 space
+
+-----------------------
+Overview
+-----------------------
+Getting a grasp on the initial design of the assignment was somewhat difficult. This
+was primarily due to the strange design of the World and Coordinate classes. The part
+that was most confusing was the implementation of the World classes method, get(Coordinate).
+Since this method calls the get() method on the Coordinate passed to it, it is possible
+that the World on the Coordinate and the calling World are not the same world, so a user
+who calls get() on Earth may get an object from Pluto.
+
+The other thing that gave me trouble was figuring out the wrapping algorithim for the
+directions South and West. I was able to do it using a loop, however, I feel like there
+is a better mathematical formula to achieve this. 
+
+Checkstyle was used to enforce correct Java 6 coding standards and Maven was used to generate
+the JAR file for submission and run all the tests during development.
