@@ -3,6 +3,7 @@ Design Assignment A1
 http://www.cs.colostate.edu/~ghosh/courses/cs414-f12/yr2012fa/more_assignments/A01.php
 
 Submitted By: Bryan Saunders, btsaunde@gmail.com
+Testing: JUnit 4.10
 
 -----------------------
 Assignment
