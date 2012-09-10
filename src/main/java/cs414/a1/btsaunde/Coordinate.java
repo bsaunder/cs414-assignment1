@@ -170,7 +170,7 @@ public class Coordinate {
 	 */
 	@Override
 	public int hashCode() {
-		return this.xCoord + this.yCoord + this.hashCode();
+		return this.xCoord + this.yCoord + this.world.hashCode();
 	}
 
 	/**
