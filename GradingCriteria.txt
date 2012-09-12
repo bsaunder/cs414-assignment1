@@ -1,0 +1,55 @@
+Functionality of test classes (CoordinateTest.java and WorldTest.java)
+
+Functionality of WorldTest.java (worth 6 points):
+
+WorldTest.java should Cover the following test cases:
+
+1- Constructor:    
+Create new World with constructor that takes one argument.   
+Create new World with zero arguments (zero dimensions).  
+Create world with valid dimensions using constructor that takes two argument.
+  
+2- put() and get() methods:   
+Put an object at a valid X,Y position (put that takes x and y positions). 
+Get an object from a valid X,Y position (Get that takes x and y positions). 
+Put an object at an invalid X,Y position (put that takes x and y positions). 
+Get an object from an invalid X,Y position (Get that takes x and y positions). 
+Put an object in a world using coordinate object. 
+Get an Object from a world using coordinate object. 
+Put an object in a coordinate using unmatched worlds.   
+Get an object from a coordinate using unmatched worlds.
+  
+3- ToString() method:
+     
+Testing toString() on valid initialized World object.  
+
+******************************************************************************
+
+Functionality of CoordinateTest.java (worth 6 points):
+
+CoordinateTest.java should Cover the following test cases:
+
+1- Constructor: 
+Create new Coordinate with positive positions with no wrapping on both dimensions. 
+Create new Coordinate with positions with wrapping on one/two dimensions.  
+Create new Coordinate at the world boundaries (any corner). 
+Create new Coordinate with uninitialized world (null world).
+ 
+2- put() and get() methods: 
+Put object in a Coordinate. 
+Get object from a Coordinate.
+
+3- north(), south(), east(), west() methods: 
+Testing north(). 
+Testing south(). 
+Testing west().
+Testing east(). 
+
+4- hashCode() method:   
+Simple testing of hashCode(). 
+
+5- equals() method:    
+Testing equals(). 
+
+6- ToString() method: 
+Testing toString() on valid initialized coordinate testing.

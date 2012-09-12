@@ -1,0 +1,426 @@
+********** Start of Coordinate Tests **********
+***** Start of FYI *****
+Declarations: 
+ 'private static Coordinate c1;'
+ 'private static World w1;'
+ 'private Coordinate c2, c3;'
+ 'private World w2, w3;'
+Initialisation in setUpBeforeClass() method
+ 'w1 = new World(4, 5);'
+ 'c1 = new Coordinate (w1, 2, 4);'
+Before every test reinitialise: 'w2 = new World(6, 8);'
+***** End of FYI *****
+
+***** TESTS *****
+Test: Create new Coordinate with uninitialised world.
+ Expected result: NullPointerException
+ Executing: 'c2 = new Coordinate (w3, 2, 3);' with w3 = null
+ Test passed: +0.1/0.1 points
+Test: Create new Coordinate with x and y positive, and both larger than dimensions of world.
+ Expected result: Coordinate will be created
+ Executing: 'c2 = new Coordinate (w1, 6, 7);'
+ Test passed: +0.1/0.1 points
+Test: Create new Coordinate with wrapping on x dimension border
+ Expected result: Coordinate will be created
+ Executing: 'c2 = new Coordinate (w1, 4, 4);'
+ Test passed: +0.1/0.1 points
+Test: Create new Coordinate with wrapping on y dimension border
+ Expected result: Coordinate will be created
+ Executing: 'c2 = new Coordinate (w1, 3, 5);'
+ Test passed: +0.1/0.1 points
+Test: Create new Coordinate with wrapping on both x and y dimension border
+ Expected result: Coordinate will be created
+ Executing: 'c2 = new Coordinate (w1, 4, 5);'
+ Test passed: +0.1/0.1 points
+Test: Get from uninitialised Coordinate
+ Expected result: NullPointerException
+ Executing: 'c2.get();'
+ Test passed: +0.1/0.1 points
+Test: Testing equals() using wrapping 1
+ Expected result: Both Coordinates created will be equal
+ Executing: 
+  'c2 = new Coordinate (w1, 4, 5);'
+  'c3 = new Coordinate (w1, 0, 0);'
+  'assertTrue(c2.equals(c3));'
+ Test passed: +0.1/0.1 points
+Test: Testing equals() using wrapping 2
+ Expected result: Both Coordinates created will not be equal
+ Executing: 
+  'c2 = new Coordinate (w1, 4, 5);'
+  'c3 = new Coordinate (w1, 10, 2);'
+  'assertTrue(!c2.equals(c3));'
+ Test passed: +0.1/0.1 points
+Test: Testing equals() using Coordinates in different worlds
+ Expected result: Both Coordinates created will not be equal
+ Executing: 
+  'c2 = new Coordinate (w1, 4, 5);'
+  'c3 = new Coordinate (w1, 4, 5);'
+  'assertTrue(!c2.equals(c3));'
+ Test passed: +0.1/0.1 points
+Test: Testing equals() using a Coordinate and an Integer object
+ Expected result: Equals returns false
+ Executing: 
+  'c2 = new Coordinate (w1, 4, 5);'
+  'Integer c3 = 5;'
+  'assertTrue(!c2.equals(c3));'
+ Test passed: +0.1/0.1 points
+Test: Testing hashCode() - test #1
+ Expected result: hashcode returns 211350920
+ Executing: 
+  'c2 = new Coordinate (w1, 3, 4);'
+  'int hs = 3+4+w1.hashCode();'
+  'assertEquals(hs,c2.hashCode());'
+Test: Testing hashCode() test #2
+ Expected result: AssertionError
+ Executing: 
+  'c2 = new Coordinate (w1, 3, 4);'
+  'int hs = 3+4+w1.hashCode()+1;'
+  'assertEquals(hs,c2.hashCode());'
+Test: Testing hashCode() with wrapping on x dimension - test #1
+ Expected result: hashcode returns 211350917
+ Executing: 
+  'c2 = new Coordinate (w1, 4, 4);'
+  'int hs = 4+w1.hashCode();'
+  'assertEquals(hs,c2.hashCode());'
+Test: Testing hashCode() with wrapping on x dimension - test #2
+ Expected result:Assertion Error
+ Executing: 
+  'c2 = new Coordinate (w1, 4, 4);'
+  'int hs = 4+5w1.hashCode();'
+  'assertEquals(hs,c2.hashCode());'
+Test: Testing hashCode() with wrapping on y dimension
+ Expected result: hashcode returns 211350916
+ Executing: 
+  'c2 = new Coordinate (w1, 3, 5);'
+  'int hs = 3+w1.hashCode();'
+  'assertEquals(hs,c2.hashCode());'
+Test: Testing hashCode() with wrapping on y dimension - test #2
+ Expected result: AssertionError
+ Executing: 
+  'c2 = new Coordinate (w1, 3, 5);'
+  'int hs = 4+5+w1.hashCode();'
+  'assertEquals(hs,c2.hashCode());'
+Test: Testing hashCode() with wrapping on both x and y dimensions
+ Expected result: hashcode returns 211350913
+ Executing: 
+  'c2 = new Coordinate (w1, 4, 5);'
+  'int hs = w1.hashCode();'
+  'assertEquals(hs,c2.hashCode());'
+Test: Testing hashCode() with wrapping on both x and y dimensions
+ Expected result: AssertionError
+ Executing: 
+  'c2 = new Coordinate (w1, 4, 5);'
+  'int hs = 4+5+w1.hashCode();'
+  'assertEquals(hs,c2.hashCode());'
+Test: Testing north() 
+ Expected result: Coordinate returned will be correct
+ Executing: 
+  'c2 = new Coordinate (w1, 2, 3);'
+  'Coordinate expected = new Coordinate (w1, 2,4);'
+  'assertTrue(expected.equals(c2.north()));'
+ Test passed: +0.1/0.1 points
+Test: Testing east() 
+ Expected result: Coordinate returned will be correct
+ Executing: 
+  'c2 = new Coordinate (w1, 2, 3);'
+  'Coordinate expected = new Coordinate (w1, 3, 3);'
+  'assertTrue(expected.equals(c2.east()));'
+ Test passed: +0.1/0.1 points
+Test: Testing south() 
+ Expected result: Coordinate returned will be correct
+ Executing: 
+  'c2 = new Coordinate (w1, 2, 3);'
+  'Coordinate expected = new Coordinate (w1, 2, 2);'
+  'assertTrue(expected.equals(c2.south()));'
+ Test passed: +0.1/0.1 points
+Test: Testing south() 
+ Expected result: Coordinate returned will be correct
+ Executing: 
+  'c2 = new Coordinate (w1, 2, 3);'
+  'Coordinate expected = new Coordinate (w1, 1, 3);'
+  'assertTrue(expected.equals(c2.west()));'
+ Test passed: +0.1/0.1 points
+Test: Testing lower Left boundary 
+ Expected result: Coordinate returned will be correct
+ Executing: 
+  'c2 = new Coordinate (w1, 0, 0);'
+  'assertTrue(c2.equals(c2.south().east().north().west()));'
+ Test passed: +0.1/0.1 points
+Test: Testing lower Right boundary 
+ Expected result: Coordinate returned will be correct
+ Executing: 
+  'c2 = new Coordinate (w1, 0, 4);'
+  'assertTrue(c2.equals(c2.south().east().north().west()));'
+ Test passed: +0.1/0.1 points
+Test: Testing Upper Left boundary 
+ Expected result: Coordinate returned will be correct
+ Executing: 
+  'c2 = new Coordinate (w1, 3, 0);'
+  'assertTrue(c2.equals(c2.north().east().south().west()));'
+ Test passed: +0.1/0.1 points
+Test: Testing Upper Right boundary 
+ Expected result: Coordinate returned will be correct
+ Executing: 
+  'c2 = new Coordinate (w1, 3, 4);'
+  'assertTrue(c2.equals(c2.north().east().south().west()));'
+ Test passed: +0.1/0.1 points
+Test: Testing toString() on a null Coordinate
+ Expected result: NullPointerException
+ Executing: 
+  'String s3 = c3.toString();
+ Test passed: +0.1/0.1 points
+Test: Testing toString() on a non-null Coordinate
+ Expected result: returned string in not null
+ Executing: 
+  'c3 = new Coordinate (w1, 3, 4);
+  'String s3 = c3.toString();
+  'assertTrue (!s3.equals(null));
+ Test passed: +0.1/0.1 points
+Test: Create new Coordinate with negative x, or y, or both.
+ Expected result: IllegalArgumentException
+ Executing: Has student identified that any of the following should be handled?
+  'c2 = new Coordinate (w1, -4, 5);' 
+  'c2 = new Coordinate (w1, 4, -5);' 
+  'c2 = new Coordinate (w1, -4, -5);' 
+ Test passed: +0.1/0.1 points
+ Test failed: 0.0/0.1 points
+Test: Get/Put null Object
+ Expected result: NullPointerException/ IllegalArgementException
+ Executing: Does student identify that nulls have to be dealt with
+ Test passed: +0.1/0.1 points
+ Test failed: 0.0/0.1 points
+Total Tests: 34
+Tests Passed: 22
+Tests Failed: 12
+Total points possible from grader's tests: 3.40
+Total points received from grader's tests: 2.20
+*************** End of Coordinate Tests ***************
+Functionality of Coordinate Class: 3.24/5.0 points
+*******************************************************
+********** Start of World Tests **********
+***** Start of FYI *****
+Declarations: 
+ 'private Coordinate c1,c2,c3;'
+ 'private static World w1;'
+ 'private World w2, w3;'
+Initialisation in setUpBeforeClass() method
+ 'w1 = new World(3);'
+Before every test reinitialise: 'w2 = new World(3, 4);'
+Before every test reinitialise: 'c1 = new Coordinate (w2, 0, 0);'
+***** End of FYI *****
+
+***** TESTS *****
+Test: Get from uninitialised world.
+ Expected result: NullPointerException thrown
+ Executing: w3.get(0,0);
+ Test passed: +0.1/0.1 points
+Test: Create new World with illegal arguments, n = m =0.
+ Expected result: Exception thrown
+ Executing: w3 = new World(0,0);
+ Test failed: 0.0/0.1 points
+Test: Create new World with negative arguments.
+ Expected result: Exception thrown
+ Executing: w3 = new World(-1); // using overloaded constructor
+ Test failed: 0.0/0.1 points
+Test: Create new world class
+ Expected result: world will be created
+ Executing: 'w3 = new World(12,14);'
+ Test passed: +0.1/0.1 points
+Test: Put an object at a valid position
+ Expected result: No Exception thrown
+ Test passed: +0.1/0.1 points
+Test: Put an object at a invalid position
+ Expected result: ArrayIndexOutOfBoundsException thrown
+ Executing: 'w1.put(3,3,brdObj);'
+Test: Get an object at a invalid position
+ Expected result: ArrayIndexOutOfBoundsException thrown
+ Executing: 'w1.get(3,3);'
+Test: Put and get an object at Lower Left Boundary
+ Expected result: No Exception thrown
+ Executing: w1.put(0,0,brdObj);
+ Test passed: +0.1/0.1 points
+Test: Put and get an object at Lewer Right Boundary
+ Expected result: No Exception thrown
+ Executing: w1.put(0,2,brdObj);
+ Test passed: +0.1/0.1 points
+Test: Put and get an object at Upper left Boundary
+ Expected result: No Exception thrown
+ Executing: w1.put(2,0,brdObj);
+ Test passed: +0.1/0.1 points
+Test: Put and get an object at Upper Right Boundary
+ Expected result: No Exception thrown
+ Executing: w1.put(2,2,brdObj);
+ Test passed: +0.1/0.1 points
+Test: Get a null object at a valid position
+ Expected result: Exception thrown
+ Executing: 'w1.get(1,0);;'
+ Test passed: +0.1/0.1 points
+Test: Get an object at a valid position
+ Expected result: Exception thrown
+ Executing: 'w1.get(3,0);;'
+Test: Put and get an object using coordinate object
+ Expected result: No Exception thrown
+ Executing: 
+  Integer brdObj = 14;
+  w2.put(c1,brdObj);
+  Integer expected = (Integer) w2.get(c1);
+  assertTrue(expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test: Put an object using unmatched worlds
+ Expected result: Exception thrown
+ Executing: 'w1.put(c1,brdObj);'
+ Test failed: 0/0.1 points
+Test: Get an object using unmatched worlds
+ Expected result: Exception thrown
+ Executing: 'w1.get(c1);;'
+ Test failed: 0/0.1 points
+Test: cordinate wraping object used to get and put
+ Expected result: No Exception thrown
+ Executing: 
+  Integer brdObj = 16;
+  w2.put(c1,brdObj);
+  c2 = new Coordinate(w2,3,4); 
+  Integer expected = (Integer) w2.get(c2);
+  assertTrue(expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test: Using get and put to test correct wrapping of coordiantes(LowerLeftBoundary) in the world
+ Expected result: No Exception thrown
+ Executing:
+  Integer brdObj = 17;
+  c2 = new Coordinate(w2,0,0);
+  c3 = new Coordinate(w2,6,8);
+  w2.put(c2,brdObj);
+  Integer expected = (Integer) w2.get(c3);
+  assertTrue(expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test: Using get and put to test Incorrect wrapping of coordiantes(LowerLeftBoundary) in the world
+ Expected result: No Exception thrown
+ Executing:
+  Integer brdObj = 18;
+  c2 = new Coordinate(w2,0,0);
+  w2.put(c2,brdObj);
+  Integer brdObj1 = 125;
+  c3 = new Coordinate(w2,6,9);
+  Integer expected = (Integer) w2.get(c3);
+  assertTrue(!expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test: Using get and put to test correct wrapping of coordiantes(LowerRighttBoundary) in the world
+ Expected result: No Exception thrown
+ Executing:
+  Integer brdObj = 19;
+  c2 = new Coordinate(w2,0,3); 
+  c3 = new Coordinate(w2,6,7);
+  w2.put(c2,brdObj);
+  Integer expected = (Integer) w2.get(c3);
+  assertTrue(expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test:Using get and put to test Incorrect wrapping of coordiantes(LowerRighttBoundary) in the world
+ Expected result: No Exception thrown
+ Executing:
+  Integer brdObj = 20;
+  c2 = new Coordinate(w2,0,3);
+  w2.put(c2,brdObj);
+  Integer brdObj1 = 5;
+  c3 = new Coordinate(w2,4,7);
+  w2.put(c3,brdObj1);
+  Integer expected = (Integer) w2.get(c3);
+  assertTrue(!expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test: Using get and put to test correct wrapping of coordiantes(UpperLeftBoundary) in the world
+ Expected result: No Exception thrown
+ Executing:
+  Integer brdObj = 21;
+  c2 = new Coordinate(w2,2,0);
+  c3 = new Coordinate(w2,5,8);
+  w2.put(c2,brdObj);
+  Integer expected = (Integer) w2.get(c3);
+  assertTrue(expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test: Using get and put to test Incorrect wrapping of coordiantes(UpperLeftBoundary) in the world
+ Expected result: No Exception thrown
+ Executing:
+  Integer brdObj = 22;
+  c2 = new Coordinate(w2,2,0); 
+  w2.put(c2,brdObj);
+  Integer brdObj1 = 5;
+  c3 = new Coordinate(w2,5,9);
+  w2.put(c3,brdObj1);
+  Integer expected = (Integer) w2.get(c3);
+  assertTrue(!expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test: Using get and put to test correct wrapping of coordiantes(UpperRightBoundary) in the world
+ Expected result: No Exception thrown
+ Executing:
+  Integer brdObj = 23;
+  c2 = new Coordinate(w2,2,3); 
+  c3 = new Coordinate(w2,5,7);
+  w2.put(c2,brdObj);
+  Integer expected = (Integer) w2.get(c3);
+  assertTrue(expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test: Using get and put to test Incorrect wrapping of coordiantes(UpperRightBoundary) in the world
+ Expected result: No Exception thrown
+ Executing:
+  Integer brdObj = 24;
+  c2 = new Coordinate(w2,2,3); 
+  w2.put(c2,brdObj);
+  Integer brdObj1 = 5;
+  c3 = new Coordinate(w2,5,12); 
+  w2.put(c3,brdObj1);
+  Integer expected = (Integer) w2.get(c3);
+  assertTrue(!expected.equals( brdObj));
+ Test passed: +0.1/0.1 points
+Test: Testing toString() on a null World object
+ Expected result: returned string in not null
+ Executing: 
+  'String s3 = w3.toString();
+ Test passed: +0.1/0.1 points
+Test: Create new World with negative N, or M, or both.
+ Expected result: IllegalArgumentException
+ Executing: Has student identified that any of the following should be handled?
+  'w2 = new World (-4, 5);' 
+  'w2 = new World (4, -5);' 
+  'w2 = new World (-4, -5);;' 
+ Test passed: +0.1/0.1 points
+ Test failed: 0.0/0.1 points
+Test: Testing toString() on a non-null World object
+ Expected result: returned string in not null
+ Executing: 
+  'String s3 = w3.toString();
+ Test passed: +0.1/0.1 points
+Test: Create new Coordinate with negative x, or y, or both.
+ Expected result: IllegalArgumentException
+ Executing: Has student identified that any of the following should be handled?
+  'w1.get(-4, 5);' 
+  'w1.get(4, -5);' 
+  'w1.get(-4, -5);' 
+ Test passed: +0.1/0.1 points
+ Test failed: 0.0/0.1 points
+Test: Create new Coordinate with negative x, or y, or both.
+ Expected result: IllegalArgumentException
+ Executing: Has student identified that any of the following should be handled?
+  'w1.put(-4, 5, obj1);' 
+  ''w1.put(4, -5, obj1);' 
+  ''w1.put(-4, -5, obj1);' 
+ Test passed: +0.1/0.1 points
+ Test failed: 0.0/0.1 points
+Total Tests: 30
+Tests Passed: 23
+Tests Failed: 7
+Total points possible from grader's tests: 3.00
+Total points received from grader's tests: 2.30
+*************** End of World Tests ***************
+Functionality of World Class: 3.83/5.0 points
+**************************************************
+Functionality of World test class: 5/6
+your tests do not cover the following cases:
+Create new World with zero arguments (zero dimensions).  -0.5
+Put an object in a coordinate using unmatched worlds   -0.5
+*****************************************************
+Functionality of Coordinate test class: 5.5/6
+your tests do not cover the following cases:
+Create new Coordinate with uninitialized world -0.5
+*****************************************************
+Programming style: 2/2
+*****************************************************
+TestAll Works correctly: 1/1
